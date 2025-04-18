@@ -5,7 +5,14 @@ import sklearn as sk
 
 #Citations: https://pandas.pydata.org/docs/user_guide/groupby.html
 
-# sort by location
+# function to load data
+def loadFile():
+    data = pd.read_csv("data/earthquakes.csv")
+    #new data table for sorted methods
+    selected = ["id", "impact.magnitude", "location.latitude", "location.longitude", "location.name"]
+    return data[selected]
+
+# find by location to get magnitude
 def findLocation(table, input):
     final = []
     for i, row in table.iterrows():
@@ -13,11 +20,9 @@ def findLocation(table, input):
             final.append(row["impact.magnitude"])
     return final
 
-data = pd.read_csv("data/earthquakes.csv")
-
-#new data table for sorted methods
-selected = ["id", "impact.magnitude", "location.latitude", "location.longitude", "location.name"]
-new_data = data[selected]
-
-mag = findLocation(new_data, "Alaska")
-print(mag)
+#returns dictionary of location to exact magnitude
+def magFilter(table, min, max):
+    final = {}
+    for i, row in table.iterrows():
+        if row["impact.magnitude"] >= min and row["impact.magnitude"] <= max:
+            final[row["location.name"]] = row["impact.magnitude"]
