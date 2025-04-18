@@ -26,3 +26,4 @@ def magFilter(table, min, max):
     for i, row in table.iterrows():
         if row["impact.magnitude"] >= min and row["impact.magnitude"] <= max:
             final[row["location.name"]] = row["impact.magnitude"]
+
