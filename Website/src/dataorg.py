@@ -1,7 +1,4 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import sklearn as sk
 
 #Citations: https://pandas.pydata.org/docs/user_guide/groupby.html
 #Sorting slide deck from Professor Aman (quick and merge sort used)
@@ -27,6 +24,7 @@ def magFilter(table, min, max):
     for i, row in table.iterrows():
         if row["impact.magnitude"] >= min and row["impact.magnitude"] <= max:
             final[row["location.name"]] = row["impact.magnitude"]
+    return final
 
 #parition function helps with quick sort function
 def partition(arr, low, high):
@@ -56,7 +54,7 @@ def partition(arr, low, high):
 
 #sort given array in numerical order based on magnitude - uses quick sort
 def magnitudeSort(arr, low, high):
-    if arr[low] > arr[high]:
+    if low < high:
         pivot = partition(arr, low, high)
         magnitudeSort(arr, low, pivot-1)
         magnitudeSort(arr, pivot+1, high)
