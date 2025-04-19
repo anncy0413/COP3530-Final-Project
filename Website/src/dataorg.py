@@ -15,15 +15,15 @@ def findLocation(table, input):
     final = []
     for i, row in table.iterrows():
         if row["location.name"] == input:
-            final.append(row["impact.magnitude"])
+            final.append(row["impact.magnitude"]) #also change it to tuple instead for sorting purposes
     return final
 
 #returns dictionary of location to exact magnitude
 def magFilter(table, min, max):
-    final = {}
+    final = [] #use tuple so merge function is able to use
     for i, row in table.iterrows():
         if row["impact.magnitude"] >= min and row["impact.magnitude"] <= max:
-            final[row["location.name"]] = row["impact.magnitude"]
+            final.append((row["location.name"], row["impact.magnitude"])) #create a pair kinda thing
     return final
 
 #parition function helps with quick sort function
@@ -70,7 +70,7 @@ def merge(arr, left, mid, right):
     index = left
 
     while i < len(X) and j < len(Y):
-        if X[i] < Y[j]:
+        if X[i][0] < Y[j][0]:
             arr[index] = X[i]
             i += 1
         else:
@@ -98,3 +98,9 @@ def alphabeticalSort(arr, left, right):
 
         #call merge function to actually sort and merge two functions together
         merge(arr, left, mid, right)
+
+table = loadFile()
+location = magFilter(table, 4, 5)
+print(location)
+alphabeticalSort(location, 0, len(location)-1)
+print(location)
