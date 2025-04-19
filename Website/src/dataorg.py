@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import sklearn as sk
 
 #Citations: https://pandas.pydata.org/docs/user_guide/groupby.html
-#Sorting slide deck from Professor Aman
+#Sorting slide deck from Professor Aman (quick and merge sort used)
 
 # function to load data
 def loadFile():
@@ -61,6 +61,42 @@ def magnitudeSort(arr, low, high):
         magnitudeSort(arr, low, pivot-1)
         magnitudeSort(arr, pivot+1, high)
 
-#sort entire table alphabetically based on location
-def alphabeticalSort(table):
-    final = {}
+#merge function that helps with merging the arrays in merge sort
+def merge(arr, left, mid, right):
+    #create two diff arrays
+    X = arr[left:mid+1]
+    Y = arr[mid+1:right+1]
+
+    i = 0 #x
+    j = 0 #y
+    index = left
+
+    while i < len(X) and j < len(Y):
+        if X[i] < Y[j]:
+            arr[index] = X[i]
+            i += 1
+        else:
+            arr[index] = Y[j]
+            j += 1
+        index = index + 1
+
+    #complete sorting if there are remaining elements in either arrays
+    while i < len(X):
+        arr[index] = X[i]
+        i += 1
+        index = index + 1
+    while j < len(Y):
+        arr[index] = Y[j]
+        j += 1
+        index = index + 1
+
+#sort entire table alphabetically based on location - use merge sort
+def alphabeticalSort(arr, left, right):
+    if(left < right):
+        #keep splitting the arrays before recursively calling
+        mid = left + (right - left)//2
+        alphabeticalSort(arr, left, mid)
+        alphabeticalSort(arr, mid + 1, right)
+
+        #call merge function to actually sort and merge two functions together
+        merge(arr, left, mid, right)
