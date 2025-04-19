@@ -7,7 +7,9 @@ from datetime import datetime
 #             https://docs.python.org/3/library/datetime.html
 
 # function to analyze frequency by location
-def analyzeFrequency(location_name):
+def analyzeFrequency(location_name,output_path="public/chart.png"):
+    df = pd.read_csv("earthquakes.csv")
+
     # read data
     data = pd.read_csv("data/earthquakes.csv")
     # converts "time.full" into datetime objects

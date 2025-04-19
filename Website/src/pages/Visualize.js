@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import ChartSection from "./components/ChartSection";
+
 
 export default function Visualize() {
   const [data, setData] = useState([]);
@@ -82,6 +84,8 @@ export default function Visualize() {
           ))}
         </MapContainer>
       </div>
+          <ChartSection />
     </div>
+    
   );
 }

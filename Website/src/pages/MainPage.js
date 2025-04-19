@@ -19,25 +19,46 @@ export default function MainPage() {
         Explore earthquake patterns across the United States using historical data.
         Filter by magnitude and visualize locations on a dynamic interactive map.
       </p>
-      <Link to="/visualize">
-        <button style={{
-          padding: "12px 24px",
-          backgroundColor: "#2563eb",
-          color: "#fff",
-          fontSize: "1rem",
-          fontWeight: "600",
-          border: "none",
-          borderRadius: "10px",
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-          cursor: "pointer",
-          transition: "background-color 0.3s"
-        }}
-        onMouseOver={(e) => e.target.style.backgroundColor = "#1d4ed8"}
-        onMouseOut={(e) => e.target.style.backgroundColor = "#2563eb"}>
-          Launch Visualization
-        </button>
-      </Link>
+
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <Link to="/visualize">
+          <button style={{
+            padding: "12px 24px",
+            backgroundColor: "#2563eb",
+            color: "#fff",
+            fontSize: "1rem",
+            fontWeight: "600",
+            border: "none",
+            borderRadius: "10px",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            cursor: "pointer",
+            transition: "background-color 0.3s"
+          }}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#1d4ed8"}
+          onMouseOut={(e) => e.target.style.backgroundColor = "#2563eb"}>
+            Launch Visualization
+          </button>
+        </Link>
+
+        <Link to="/analysis">
+          <button style={{
+            padding: "12px 24px",
+            backgroundColor: "#10b981",
+            color: "#fff",
+            fontSize: "1rem",
+            fontWeight: "600",
+            border: "none",
+            borderRadius: "10px",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            cursor: "pointer",
+            transition: "background-color 0.3s"
+          }}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#059669"}
+          onMouseOut={(e) => e.target.style.backgroundColor = "#10b981"}>
+            Launch Analysis
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
-
