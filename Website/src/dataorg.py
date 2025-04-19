@@ -15,7 +15,7 @@ def findLocation(table, input):
     final = []
     for i, row in table.iterrows():
         if row["location.name"] == input:
-            final.append(row["impact.magnitude"]) #also change it to tuple instead for sorting purposes
+            final.append((row["location.name"], row["impact.magnitude"])) #also change it to tuple instead for sorting purposes
     return final
 
 #returns dictionary of location to exact magnitude
@@ -28,19 +28,19 @@ def magFilter(table, min, max):
 
 #parition function helps with quick sort function
 def partition(arr, low, high):
-    pivot = arr[low] #just takes first element as pivot
+    pivot = arr[low][1] #just takes first element as pivot
     up = low #search up from left of pivot
     down = high #search down from right of pivot
 
     while(up < down):
         # everything is either above or below the pivot is in correct order
         for i in range(up, high):
-            if arr[i] > pivot:
+            if arr[i][1] > pivot:
                 break
             up += 1
 
         for i in range(down, low, -1):
-            if arr[i] < pivot:
+            if arr[i][1] < pivot:
                 break
             down -= 1
 
@@ -98,9 +98,3 @@ def alphabeticalSort(arr, left, right):
 
         #call merge function to actually sort and merge two functions together
         merge(arr, left, mid, right)
-
-table = loadFile()
-location = magFilter(table, 4, 5)
-print(location)
-alphabeticalSort(location, 0, len(location)-1)
-print(location)
