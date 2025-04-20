@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from chartlocation import analyzeFrequency
+from dataorg import get_unique_location_keywords
 
 def analyze_and_save_chart(location, df, output_dir):
     filtered_df = df[df["location.name"].str.contains(location, case=False, na=False)]
