@@ -98,3 +98,9 @@ def alphabeticalSort(arr, left, right):
 
         #call merge function to actually sort and merge two functions together
         merge(arr, left, mid, right)
+
+def get_unique_location_keywords(df):
+
+    unique_places = df["location.name"].dropna().apply(lambda x: " ".join(str(x).split()[1:3]))
+    locations = sorted(set(unique_places))
+    return locations
