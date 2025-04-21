@@ -103,5 +103,5 @@ Only charts for locations **that actually match data in the CSV** will be create
 ## Contributors
 
 anncy0413-Kexin Zhou
-
+lomanim-Lomani Mullikin
 
